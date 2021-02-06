@@ -1,10 +1,8 @@
 # Ejemplo de autenticación y creación de un API en Laravel 5.3
 Este repositorio contiene una pequeña ejemplificación de como utilizar la autenticación en Laravel 5.3 y como crear un API para que nuestra aplicación sea consumible desde otros sistemas, por ejemplo, desde una aplicación mobile.
 
-Desarrollo hecho para el turno tarde del curso Full Stack de Digital House (Noviembre 2016)
 
 ## ¿Como utilizar este proyecto?
-- Clonar el proyecto: `git clone https://github.com/seba1992/dh-taringa.git`
 - Copiar el contenido del `.env.example` al .env `cp .env.example .env`
 - Crear una nueva base de datos y setearla en el `.env`
 - Ejecutar en el directorio del proyecto:
@@ -18,7 +16,7 @@ Desarrollo hecho para el turno tarde del curso Full Stack de Digital House (Novi
 ## Rutas del API
 El proyecto contiene un api minimamente funcional. Si estás interesado en saber como solucionar las diferentes problemáticas que se ven/comentan en el código, se aconseja, como introducción, ver la siguiente serie: https://laracasts.com/series/incremental-api-development.
 
-Se incluye en el root del proyecto, el archivo `Taringa.postman_collection.json`, el cual es una colección de Postman (instalátelo e importala) para que puedas jugar con el API (En principio probala con estas credenciales `email: bot@taringa.app`, `password:12345678`).
+Se incluye en el root del proyecto, el archivo `Taringa.postman_collection.json`, el cual es una colección de Postman (instalátelo e importala) para que puedas jugar con el API (En principio probala con estas credenciales `email: admin@admin.com`, `password:123456789`).
 
 Las rutas con las que te vas a encontar son:
 - `GET` api/v1/posts -- Lista todos los posts con paginación
