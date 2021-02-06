@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Api\BaseController as ApiController;
 
-use App\User, App\Post;
+use App\User, App\Post, App\Equipos, App\Puntajes;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 /**
@@ -14,17 +14,18 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
  * de tener centralizado el formato de la misma en un solo lugar,
  * ya sea para devolver respuestas de exito, de error...
  */
-class UserPostsController extends ApiController
+class TeamsController extends ApiController
 {
 	/**
 	 * Lista los posts de un usuario específico
 	 *
 	 * Ejercicio: paginarlos!
 	 */
-	public function index($id) {
+	public function index() {
 		try 
 		{
-			$user = User::findOrFail($id);	
+			// $teams = Equipos::findOrFail($id);	
+			$teams = Equipos::all();	
 
 			/**
 			 * De cada post solo devuelvo la información necesaria, y con el
@@ -36,11 +37,11 @@ class UserPostsController extends ApiController
 			 * http://fractal.thephpleague.com/transformers/
 			 */
 			
-			$data = $user->posts->map(function($item) {
+			$data = $teams->map(function($item) {
 				return [
 					'id' 		=> $item->id,
-					'title'		=> $item->title,
-					'content'	=> $item->content
+					'name'		=> $item->name,
+					
 				];
 			}); 
 
@@ -100,15 +101,15 @@ class UserPostsController extends ApiController
 			return $this->getErrorResponse("Resource not found", "The user can't be found", 404);
 		}
 	}
-
 	public function addPoints($id, Request $request) {
 		try 
 		{
 			$puntos=(int)$request->puntos;
+			$game=(int)$request->juego;
 			// dd($puntos);
-			$user =  User::findOrFail($id);	
-			$user->puntaje = $user->puntaje +$puntos;
-			$user->save();
+			$teams =  Puntajes::where('equipo_id',$id)->where('juego_id',$game)->first();	
+			$teams->puntaje = $teams->puntaje +$puntos;
+			$teams->save();
 
 			// $data = $user->map(function($item) {
 			// 	return [
@@ -116,7 +117,7 @@ class UserPostsController extends ApiController
 			// 	];
 			// }); 
 
-			return $this->getSuccessResponse(["status",200]);
+			return $this->getSuccessResponse([200]);
 		} 
 		catch (ModelNotFoundException $e) 
 		{

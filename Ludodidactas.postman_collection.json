@@ -1,13 +1,14 @@
 {
 	"id": "5c6cb7ff-e59f-4056-8c2d-768e19816dc4",
 	"name": "Ludodidactas",
-	"description": "Ejemplo de un mini-api para Digital House.\nSebastián Agustín Rinaldi.",
+	"description": "Ejemplo de un mini-api para Ludodidactas.",
 	"order": [
 		"8425b0eb-5b0e-4c90-0937-7d21de568f52",
 		"77144fab-7d06-cab8-3644-cb8bc5b8c1dc",
 		"fe0fe3db-f362-9e29-2163-54634412f96a",
 		"c3ed8564-7a67-6b71-aa16-64dce0b00843",
-		"7d0bc277-f1b9-b20b-719c-f6408d5c4d86"
+		"7d0bc277-f1b9-b20b-719c-f6408d5c4d86",
+		"8425b0eb-5b0e-4c90-0937-7d21de568f55"
 	],
 	"folders": [],
 	"timestamp": 1479518329266,
@@ -80,6 +81,25 @@
 			"helperAttributes": {},
 			"time": 1479519187165,
 			"name": "Muestra el listado de posts",
+			"description": "",
+			"collectionId": "5c6cb7ff-e59f-4056-8c2d-768e19816dc4",
+			"responses": []
+		},
+		{
+			"id": "8425b0eb-5b0e-4c90-0937-7d21de568f55",
+			"headers": "Accept: application/json\n",
+			"url": "http://localhost:8000/api/v1/users",
+			"preRequestScript": null,
+			"pathVariables": {},
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1479519187165,
+			"name": "Muestra el listado de los usuarios",
 			"description": "",
 			"collectionId": "5c6cb7ff-e59f-4056-8c2d-768e19816dc4",
 			"responses": []
