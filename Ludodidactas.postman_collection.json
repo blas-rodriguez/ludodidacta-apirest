@@ -1,0 +1,139 @@
+{
+	"id": "5c6cb7ff-e59f-4056-8c2d-768e19816dc4",
+	"name": "Ludodidactas",
+	"description": "Ejemplo de un mini-api para Digital House.\nSebastián Agustín Rinaldi.",
+	"order": [
+		"8425b0eb-5b0e-4c90-0937-7d21de568f52",
+		"77144fab-7d06-cab8-3644-cb8bc5b8c1dc",
+		"fe0fe3db-f362-9e29-2163-54634412f96a",
+		"c3ed8564-7a67-6b71-aa16-64dce0b00843",
+		"7d0bc277-f1b9-b20b-719c-f6408d5c4d86"
+	],
+	"folders": [],
+	"timestamp": 1479518329266,
+	"owner": "2197",
+	"public": false,
+	"hasRequests": true,
+	"requests": [
+		{
+			"id": "77144fab-7d06-cab8-3644-cb8bc5b8c1dc",
+			"headers": "",
+			"url": "http://localhost:8000/api/v1/posts/5",
+			"preRequestScript": null,
+			"pathVariables": {},
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1479519985675,
+			"name": "Muestra la información de un post",
+			"description": "",
+			"collectionId": "5c6cb7ff-e59f-4056-8c2d-768e19816dc4",
+			"responses": []
+		},
+		{
+			"id": "7d0bc277-f1b9-b20b-719c-f6408d5c4d86",
+			"headers": "Accept: application/json\n",
+			"url": "http://localhost:8000/api/v1/users/1/posts?api_token={{api_token}}",
+			"preRequestScript": null,
+			"pathVariables": {},
+			"method": "POST",
+			"data": [
+				{
+					"key": "title",
+					"value": "Mi nueva receta!",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "content",
+					"value": "Hoy les traigo un nuevo post en el que les voy a mostrar como preparar uno de los platos mas suculen...",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1479523743495,
+			"name": "Creación de un post",
+			"description": "Guarda un nuevo post a un usuario especificado\nRequiere de autenticación",
+			"collectionId": "5c6cb7ff-e59f-4056-8c2d-768e19816dc4",
+			"responses": []
+		},
+		{
+			"id": "8425b0eb-5b0e-4c90-0937-7d21de568f52",
+			"headers": "Accept: application/json\n",
+			"url": "http://localhost:8000/api/v1/posts",
+			"preRequestScript": null,
+			"pathVariables": {},
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1479519187165,
+			"name": "Muestra el listado de posts",
+			"description": "",
+			"collectionId": "5c6cb7ff-e59f-4056-8c2d-768e19816dc4",
+			"responses": []
+		},
+		{
+			"id": "c3ed8564-7a67-6b71-aa16-64dce0b00843",
+			"headers": "Accept: application/json\n",
+			"url": "http://localhost:8000/api/v1/login",
+			"preRequestScript": null,
+			"pathVariables": {},
+			"method": "POST",
+			"data": [
+				{
+					"key": "email",
+					"value": "admin@admin.com",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "password",
+					"value": "123456789",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"version": 2,
+			"tests": "var jsonData = JSON.parse(responseBody);\npostman.setEnvironmentVariable(\"api_token\", jsonData.api_token);",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1479527079528,
+			"name": "Login",
+			"description": "Con esta ruta un usuario puede obtener un api_token para poder crear posts y realizar otras acciones que requieran de autenticación",
+			"collectionId": "5c6cb7ff-e59f-4056-8c2d-768e19816dc4",
+			"responses": []
+		},
+		{
+			"id": "fe0fe3db-f362-9e29-2163-54634412f96a",
+			"headers": "Accept: application/json\n",
+			"url": "http://localhost:8000/api/v1/users/1/posts",
+			"preRequestScript": null,
+			"pathVariables": {},
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1479523734751,
+			"name": "Muestra los posts de un usuario",
+			"description": "",
+			"collectionId": "5c6cb7ff-e59f-4056-8c2d-768e19816dc4",
+			"responses": []
+		}
+	]
+}
