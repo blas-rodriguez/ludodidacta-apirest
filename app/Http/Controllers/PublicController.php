@@ -33,7 +33,6 @@ class PublicController extends Controller
 	  	$puntajes  = Puntajes::take(5)->selectRaw('equipos.id,equipos.name , SUM(puntajes.puntaje) as puntaje')
 					->leftJoin('equipos', 'puntajes.equipo_id', '=', 'equipos.id')				 
 		            ->groupBy('equipos.id')
-					->with('juegos')
 					->get();
 	  	$Equipos = Equipos::take(5)->orderBy('created_at', 'DESC')->get();
 		// dd($puntajes);
