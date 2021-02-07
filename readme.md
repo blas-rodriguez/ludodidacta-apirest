@@ -16,11 +16,8 @@ Este repositorio contiene una pequeña ejemplificación de como utilizar la aute
 ## Rutas del API
 El proyecto contiene un api minimamente funcional. Si estás interesado en saber como solucionar las diferentes problemáticas que se ven/comentan en el código, se aconseja, como introducción, ver la siguiente serie: https://laracasts.com/series/incremental-api-development.
 
-<<<<<<< HEAD
 Se incluye en el root del proyecto, el archivo `Ludodidactas.postman_collection.json`, el cual es una colección de Postman (instalátelo e importala) para que puedas jugar con el API (En principio probala con estas credenciales `email: admin@admin.com`, `password:123456789`).
-=======
 Se incluye en el root del proyecto, el archivo `Taringa.postman_collection.json`, el cual es una colección de Postman (instalátelo e importala) para que puedas jugar con el API (En principio probala con estas credenciales `email: admin@admin.com`, `password:123456789`).
->>>>>>> develop
 
 Las rutas con las que te vas a encontar son:
 - `GET` api/v1/posts -- Lista todos los posts con paginación
