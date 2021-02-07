@@ -23,8 +23,8 @@ class PublicController extends Controller
     	//En la vista principal muestro los 10 mejores posts a todos los usuarios!
     	
     	//Obtiene los Top posts, mirate el método scopeTop en el modelo Post
-	  	$posts   = Post::top()->get(); 
-	  	$users   = User::take(5)->orderBy('created_at', 'DESC')->get();
+	  	// $posts   = Post::top()->get(); 
+	  	$users   = User::take(5)->orderBy('id', 'ASC')->get();
 	  	// $juegos  = Juegos::take(5)->orderBy('created_at', 'DESC')->get();
 	  	$juegos  = Puntajes::take(5)->selectRaw('juegos.id,juegos.name , SUM(puntajes.puntaje) as puntaje')
 					->leftJoin('juegos', 'puntajes.juego_id', '=', 'juegos.id')				 
@@ -39,7 +39,7 @@ class PublicController extends Controller
 		// dd($puntajes);
 
 	  	return view('public.index')
-		  			->with('posts', $posts)
+		  			// ->with('posts', $posts)
 		  			->with('Equipos', $Equipos)
 		  			->with('juegos', $juegos)
 		  			->with('puntajes', $puntajes)
