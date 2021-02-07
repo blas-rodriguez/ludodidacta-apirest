@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Post;
+// use App\Post;
 use App\User;
 use App\Equipos;
-use App\Juegos;
+// use App\Juegos;
 use App\Puntajes;
 
 class PublicController extends Controller
