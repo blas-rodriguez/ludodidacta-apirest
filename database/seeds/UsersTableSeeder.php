@@ -1,7 +1,9 @@
 <?php
 
 use Illuminate\Database\Seeder;
-
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 //Si uso una clase, no me puedo olvidar de importarla con el nombre completo!!!
 use App\User;
 use App\Equipos;
@@ -31,6 +33,8 @@ class UsersTableSeeder extends Seeder
               'name'     => 'Admin',
               'puntaje'     => 1,
               'lastname' => 'Admin',
+              'nacimiento' => Carbon::now(),
+              'fecha_visita' => Carbon::now(),
               'email'    => 'admin@admin.com',
               'equipo_id'   => 1,
               'password' => Hash::make('123456789')
@@ -46,11 +50,13 @@ class UsersTableSeeder extends Seeder
 
         $Equipos = Equipos::all(); 
 
-        for($i=0; $i < 30; $i++) {
+        for($i=0; $i < 10; $i++) {
             User::create([
-              'name'        => $faker->name,
+              'name'        => $faker->firstName,
               'puntaje'     => rand(1,30),
               'lastname'    => $faker->lastName,
+              'nacimiento' => Carbon::now(),
+              'fecha_visita' => Carbon::now(),
               'email'       => $faker->email,
               'equipo_id'   => $Equipos->random(1)->id,
               'password'    => Hash::make('12345678'), //Vital guardar la contraseña encriptada o no nos vamos a poder autenticar!

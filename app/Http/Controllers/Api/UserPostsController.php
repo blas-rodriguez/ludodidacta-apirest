@@ -88,6 +88,7 @@ class UserPostsController extends ApiController
 				return [
 					'id' 		=> $item->id,
 					'name'		=> $item->name,
+					'nacimiento'=> $item->nacimiento,
 					'lastname'	=> $item->lastname,
 					'equipo_id'	=> $item->equipo_id 
 				];
