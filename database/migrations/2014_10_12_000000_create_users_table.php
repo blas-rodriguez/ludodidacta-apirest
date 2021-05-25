@@ -20,7 +20,7 @@ class CreateUsersTable extends Migration
             $table->date('nacimiento')->nullable(); 
             $table->date('fecha_visita')->nullable(); 
             $table->integer('puntaje');
-            $table->string('email')->unique();
+            $table->string('email');
             $table->string('password');
             $table->string('api_token', 60)->unique();
             $table->string('avatar')->nullable()->default(NULL);

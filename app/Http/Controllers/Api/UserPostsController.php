@@ -5,8 +5,9 @@ namespace App\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Api\BaseController as ApiController;
-
-use App\User, App\Post;
+use Carbon\Carbon;
+use App\User, App\Post, App\Puntajes;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 /**
@@ -90,7 +91,30 @@ class UserPostsController extends ApiController
 					'name'		=> $item->name,
 					'nacimiento'=> $item->nacimiento,
 					'lastname'	=> $item->lastname,
-					'equipo_id'	=> $item->equipo_id 
+					'equipo_id'	=> $item->equipo_id,
+					'puntaje'	=> $item->puntaje 
+				];
+			}); 
+
+			return $this->getSuccessResponse($data);
+		} 
+		catch (ModelNotFoundException $e) 
+		{
+			return $this->getErrorResponse("Resource not found", "The user can't be found", 404);
+		}
+	}
+	public function allPoints() {
+		try 
+		{
+			$user = Puntajes::all();	
+			
+			$data = $user->map(function($item) {
+				return [
+					'id' 		=> $item->id,
+					'fecha'		=> $item->fecha,
+					'puntaje'   => $item->puntaje,
+					'equipo_id'	=> $item->equipo_id,
+					'juego_id'	=> $item->juego_id 
 				];
 			}); 
 
@@ -106,16 +130,41 @@ class UserPostsController extends ApiController
 		try 
 		{
 			$puntos=(int)$request->puntos;
+			$equipo=(int)$request->equipo;
+			$name=(string)$request->name;
+			$nuevo=(string)$request->nuevo;
 			// dd($puntos);
-			$user =  User::findOrFail($id);	
-			$user->puntaje = $user->puntaje +$puntos;
-			$user->save();
+			if(!empty($nuevo))
+			{
+				User::create([
+					'name'        => $name,
+					'puntaje'     => $puntos,
+					'lastname'    => $name,
+					'nacimiento'  => Carbon::now(),
+					'fecha_visita'=> Carbon::now(),
+					'email'       => $name."@gmail.com",
+					'equipo_id'   => $equipo,
+					'password'    => Hash::make('12345678'), //Vital guardar la contraseña encriptada o no nos vamos a poder autenticar!
+				  ]);
+			}
+			else
+			  {
+				$user =  User::findOrFail($id);	
 
-			// $data = $user->map(function($item) {
-			// 	return [
-			// 		'status' 		=> 200,
-			// 	];
-			// }); 
+				if(!empty($puntos))
+				$user->puntaje = $user->puntaje +$puntos;
+	
+				if(!empty($name))
+				$user->name=$name;
+	
+				if(!empty($equipo))
+				$user->equipo_id=$equipo;
+	
+				$user->save();
+			  }
+			
+
+
 
 			return $this->getSuccessResponse(["status",200]);
 		} 
