@@ -50,13 +50,13 @@ class UsersTableSeeder extends Seeder
 
         $Equipos = Equipos::all(); 
 
-        for($i=0; $i < 10; $i++) {
+        for($i=0; $i < 4; $i++) {
             User::create([
               'name'        => $faker->firstName,
               'puntaje'     => rand(1,30),
               'lastname'    => $faker->lastName,
-              'nacimiento' => Carbon::now(),
-              'fecha_visita' => Carbon::now(),
+              'nacimiento'  => Carbon::now(),
+              'fecha_visita'=> Carbon::now(),
               'email'       => $faker->email,
               'equipo_id'   => $Equipos->random(1)->id,
               'password'    => Hash::make('12345678'), //Vital guardar la contraseña encriptada o no nos vamos a poder autenticar!

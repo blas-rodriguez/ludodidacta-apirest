@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Api\BaseController as ApiController;
-
+use Carbon\Carbon;
 use App\User, App\Post, App\Equipos, App\Puntajes;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
@@ -106,16 +106,41 @@ class TeamsController extends ApiController
 		{
 			$puntos=(int)$request->puntos;
 			$game=(int)$request->juego;
-			// dd($puntos);
-			$teams =  Puntajes::where('equipo_id',$id)->where('juego_id',$game)->first();	
-			$teams->puntaje = $teams->puntaje +$puntos;
-			$teams->save();
+			$name=(string)$request->name;
+			$nuevo=(string)$request->nuevo;
+			
+			if(!empty($nuevo))
+			{
+				$idEquipo =Equipos::create([
+					'name'  => $name,
+					  ]);
+				Puntajes::create([
+						'puntaje'  =>$puntos,
+						'fecha'  => Carbon::now(),
+						'equipo_id'  => $idEquipo->id,
+						  ]);
+			}
+			else{
+				if(!empty($puntos))
+				{
+				$teams =  Puntajes::where('equipo_id',$id)->first();	
+				// $teams =  Puntajes::where('equipo_id',$id)->where('juego_id',$game)->first();	
+				$teams->puntaje = $teams->puntaje +$puntos;
+				$teams->save();
+				}
+					
+				if(!empty($name))
+				{
+					$teamsModify =  Equipos::findOrFail($id);
+					$teamsModify->name=$name;
+					$teamsModify->save();
+				}
+			}
+			
+				
 
-			// $data = $user->map(function($item) {
-			// 	return [
-			// 		'status' 		=> 200,
-			// 	];
-			// }); 
+				
+			  
 
 			return $this->getSuccessResponse([200]);
 		} 

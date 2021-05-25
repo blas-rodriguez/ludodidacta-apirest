@@ -20,13 +20,13 @@ class PuntajesTableSeeder extends Seeder
     	$faker = Faker\Factory::create();
 
 
-		for($i=0; $i < 10; $i++) {
+		for($i=0; $i < 4; $i++) {
 			$Puntajes = Puntajes::create(
 		    	[
 		          'fecha'         => $faker->dateTime, //Genera una oración de 6 palabras
 		          'puntaje'      => rand(1,50),
 		          'juego_id'     => rand(1,10),
-		          'equipo_id'    => rand(1,10),
+		          'equipo_id'    => rand(1,4),
 		        ]); 	
 		}
     	

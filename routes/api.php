@@ -36,6 +36,7 @@ Route::group(['prefix'=>'v1'], function() {
 	//Obtención de los posts de todos los usuarios
 	Route::get('posts', 'Api\PostsController@index');
 	Route::get('users', 'Api\UserPostsController@allUsers');
+	Route::get('points', 'Api\UserPostsController@allPoints');
 	Route::get('users/{id}/points', 'Api\UserPostsController@addPoints');
 	Route::get('teams', 'Api\TeamsController@index');
 	Route::get('teams/{id}/points', 'Api\TeamsController@addPoints');
